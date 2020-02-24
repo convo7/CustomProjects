@@ -11,35 +11,15 @@ typedef std::shared_ptr<Base> basePtr;
 class Base {
 public:
     Base() = default;
+    explicit Base(basePtr nextBase) : m_next(nextBase) {};
 
-    explicit Base(basePtr nextBase) : m_next(nextBase) {
-    }
-
-    bool setPlayer(playerPtr player) {
-        m_player = player;
-        return true;
-    }
-
-    void setNextBase(basePtr &next) {
-        m_next = next;
-    }
-
-    bool hasPlayer() { return m_player != nullptr; }
-
-    void move() {
-        if (m_next->hasPlayer()) {
-            m_next->move();
-            m_next->setPlayer(m_player);
-        } else {
-            m_next->setPlayer(m_player);
-            m_player.reset();
-            m_player = nullptr;
-        }
-    }
+    bool setPlayer(playerPtr player);
+    void setNextBase(basePtr &next);
+    bool hasPlayer();
+    void move();
 
     playerPtr m_player = {};
     basePtr m_next = {};
-
 };
 
 #endif //BASEBALL_CPLUS_BASE_H

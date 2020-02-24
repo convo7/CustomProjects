@@ -35,11 +35,7 @@ public:
 
 class Pitcher : public Player, public Pitching {
 public:
-    int throwPitch() {
-        m_fastball--;
-        auto result = m_fastball - 10 - rand() % m_fastball;
-        return result;
-    }
+    int throwPitch();
 };
 
 #endif //BASEBALL_CPLUS_PLAYER_H
