@@ -2,7 +2,8 @@
 #define BASEBALL_CPLUS_GAME_H
 
 #include "Player.h"
-#include "Base.h"
+#include "Bases.h"
+#include "Types.h"
 
 #include <random>
 
@@ -11,7 +12,6 @@ public:
     Game(teamPtr team1, teamPtr team2);
 
     void start();
-    bool probabilityResult(int var, int &againts);
     void attack(teamPtr &attackTeam, teamPtr &defenceTeam);
     void result();
 
@@ -21,10 +21,7 @@ private:
     int m_inning = 0;
     int m_outs = 0;
 
-    basePtr m_base1 = {};
-    basePtr m_base2 = {};
-    basePtr m_base3 = {};
-    basePtr m_base_home = {};
+    basePtr m_bases = {};
 };
 
 #endif //BASEBALL_CPLUS_GAME_H

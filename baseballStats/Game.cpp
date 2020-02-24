@@ -2,40 +2,37 @@
 #include "Team.h"
 
 Game::Game(teamPtr team1, teamPtr team2) : m_team1(std::move(team1)), m_team2(std::move(team2)) {
-    m_base_home = std::make_shared<Base>();
-    m_base3 = std::make_shared<Base>(m_base_home);
-    m_base2 = std::make_shared<Base>(m_base3);
-    m_base1 = std::make_shared<Base>(m_base2);
-    m_base_home->setNextBase(m_base1);
+    m_bases = std::make_shared<Bases>();
 }
 
 void Game::start() {
     while (m_team1->getScore() == m_team2->getScore() || m_inning <= 9) {
         m_inning++;
-        attack(m_team1, m_team2);
         attack(m_team2, m_team1);
+        attack(m_team1, m_team2);
     }
 }
 
-bool Game::probabilityResult(int var, int &againts) {
-    int result = 1 - rand() & 110;
-    return result <= 25;
-}
-
 void Game::attack(teamPtr &attackTeam, teamPtr &defenceTeam) {
-
     while (m_outs < 3) {
 
         int strikes = 0;
         int balls = 0;
 
-        m_base_home->setPlayer(attackTeam->getBatter());
-        if (probabilityResult(defenceTeam->getPitcher()->throwPitch(),
+        m_bases->setHomePlayer(attackTeam->getBatter());
+
+        auto random = defenceTeam->getRandom();
+        if (random->randomHit(defenceTeam->getPitcher()->pitch(),
                               attackTeam->getBatter()->batting.m_contact)) {
-            m_base_home->move();
-            if (m_base_home->hasPlayer()) attackTeam->score(1);
-        } else { m_outs++; }
+            m_bases->move(attackTeam);
+        }
+        else
+        {
+        m_outs++;
+        }
     }
+    m_bases->clearBases();
+    m_outs = 0;
 }
 
 void Game::result() {

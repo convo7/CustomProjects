@@ -1,6 +1,9 @@
 #include "Team.h"
 
-Team::Team(std::string teamName) : m_name(std::move(teamName)) {
+Team::Team(std::string teamName, randomizePtr random) : m_name(std::move(teamName)) {
+
+    m_random = random;
+
     m_pitcher = std::make_shared<Pitcher>();
     while (m_fielders.size() < 9) {
         auto player = std::make_shared<Player>();
@@ -32,4 +35,8 @@ pitcherPtr Team::getPitcher() const {
 
 std::string Team::getName() const {
     return m_name;
+}
+
+randomizePtr Team::getRandom() const{
+    return m_random;
 }

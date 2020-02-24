@@ -3,4 +3,16 @@ project(baseball)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(baseball main.cpp Player.h Skills.h Team.h Game.h Base.h Player.cpp Base.cpp Team.cpp Game.cpp)
+add_executable(baseball
+        main.cpp
+        Player.h
+        Skills.h
+        Team.h
+        Game.h
+        Bases.h
+        Bases.cpp
+        Team.cpp
+        Game.cpp
+        IRandomize.h
+        StdRandomize.cpp
+        StdRandomize.h Pitching.cpp Pitching.h Types.h)
