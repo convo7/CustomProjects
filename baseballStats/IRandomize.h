@@ -12,8 +12,4 @@ public:
   //virtual bool randomThrow(int accuracity) = 0;
 };
 
-
-
-
-
 #endif //BASEBALL_IRANDOMIZE_H

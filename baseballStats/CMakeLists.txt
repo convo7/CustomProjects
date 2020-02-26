@@ -15,4 +15,6 @@ add_executable(baseball
         Game.cpp
         IRandomize.h
         StdRandomize.cpp
-        StdRandomize.h Pitching.cpp Pitching.h Types.h)
+        StdRandomize.h
+        Types.h
+        Player.cpp)

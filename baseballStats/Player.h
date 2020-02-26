@@ -7,7 +7,6 @@
 #include "Skills.h"
 #include "Bases.h"
 #include "IRandomize.h"
-#include "Pitching.h"
 
 class Player {
 public:
@@ -16,7 +15,11 @@ public:
     BaseRunning baseRunning = {};
 };
 
-class Pitcher : public Player, public Pitching {
+class Pitcher : public Player {
+public:
+    int pitch();
+private:
+    std::vector<int> m_pitch = {200, 150};
 };
 
 #endif //BASEBALL_CPLUS_PLAYER_H
